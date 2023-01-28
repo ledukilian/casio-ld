@@ -1,0 +1,89 @@
+Filename:PAINT
+Lbl 8
+ClrText
+"  #E69B PAINT [0.22] #E69A"
+" "
+"   1 = DESSINER"
+"   2 = GALERIE"
+"   3 = TOUCHES"
+?->C
+1=C=>Goto 0
+2=C=>Goto 4
+3=C=>Goto 7
+Goto 8
+
+Lbl 4
+ClrText
+""
+"    NUMERO CAPTURE"
+""
+?->C
+C=1=>RclCapt1Ø
+C=2=>RclCapt2Ø
+C=3=>RclCapt3Ø
+C=4=>RclCapt4Ø
+C=5=>RclCapt5Ø
+C=6=>RclCapt6Ø
+C=7=>RclCapt7Ø
+C=8=>RclCapt8Ø
+C=9=>RclCapt9Ø
+C=10=>RclCapt10Ø
+C=11=>RclCapt11Ø
+C=12=>RclCapt12Ø
+C=13=>RclCapt13Ø
+C=14=>RclCapt14Ø
+C=15=>RclCapt15Ø
+C=16=>RclCapt16Ø
+C=17=>RclCapt17Ø
+C=18=>RclCapt18Ø
+C=19=>RclCapt19Ø
+C=20=>RclCapt20Ø
+Goto 8
+
+Lbl 7
+ClrText
+" F5 = MODE DESSIN"
+" F6 = MODE EFFACER"
+" FLECHES = DIRECTION"
+" 0 = TOUT EFFACER"
+" 7 = VEROUILLER"
+" 5 = MENU"Ø
+ClrText
+" SHIFT + 7 = CAPTURE"Ø
+Goto 8
+
+Lbl 0
+50->U
+50->V
+ViewWindow 1,127,0,1,63,0
+SketchThickF-Line 1,8,127,8
+Text 58,70,"@7C PAINT [0.22]"
+Lbl 2
+Text 58,45,"   "
+G=39=>0->W
+G=29=>1->W
+W=1=>Text 58,58,"[ ]"
+W=0=>Text 58,58,"[#E6A6]"
+Do
+Do
+Getkey->G
+LpWhile Not G
+G=39=>Goto 2
+G=29=>Goto 2
+G=71=>Goto 0
+G=63=>Goto 8
+G=74=>Goto 3
+G=28=>V+1->V
+G=27=>U+1->U
+G=37=>V-1->V
+G=38=>U-1->U
+W=0=>PlotOn U,V
+W=1=>PlotOff U,V
+Text 58,5,"        "
+Text 58,20,U
+Text 58,5,V
+LpWhile GÈ47
+
+Lbl 3
+Text 58,45,"[#]"Ø
+Goto 2
