@@ -1,0 +1,96 @@
+Filename:SNAKE
+1->R
+Lbl 0
+ClrText
+BG-None
+ClrList
+0->A~Z
+Mat S[8,9]->Z
+25->C
+35->D
+1->A
+S-1->S
+
+ViewWindow 1,127,0,1,63,0
+SketchThickF-Line 2,2,2,62
+SketchThickF-Line 2,2,80,2
+SketchThickF-Line 2,62,80,62
+SketchThickF-Line 80,2,80,62
+SketchNormalF-Line 80,4,126,4
+SketchNormalF-Line 126,4,126,57
+SketchNormalF-Line 80,57,126,57
+Text 1,85," [0.422]"
+Text 11,82,"SCORE :"
+Text 20,82,"BEST :"
+SketchDotF-Line 80,36,126,36
+
+SketchDotF-Line 80,14,126,14
+Text 53,82," BTS CRSA2"
+Text 31,82,"RANG :"
+Z<30=>Text 41,82," UNRANKED"
+ZÊ30=>Text 41,82,"  BRONZE"
+ZÊ50=>Text 41,82,"  SILVER "
+ZÊ70=>Text 41,82,"   GOLD  "
+ZÊ90=>Text 41,82,"  PLATINE "
+ZÊ110=>Text 41,82," DIAMANT "
+ZÊ130=>Text 41,82,"  MASTER "
+ZÊ180=>Text 41,84,"CHALLENGER"
+
+
+Lbl 2
+S+1->S
+SÊZ=>S->Z
+Z->Mat S[8,9]
+Text 11,113,S
+Text 20,108,Z
+S=2550=>Goto 3
+Do
+Int 72Ran#+4->U
+Int 55Ran#+6->V
+PlotOn U,V
+Dsz M
+For L+1->L To 256
+Isz M
+M=256=>2->M
+Getkey->G
+If GÈ0
+Then If G=31
+Then Text 1,1,""Ø
+Else 0->A~B:IfEnd
+G=27=>1->A
+G=28=>1->B
+G=38=>-1->A
+G=37=>-1->B
+IfEnd
+C+A->C:D+B->D
+C->List 1[L]
+D->List 2[L]
+C=U And D=V=>Goto 2
+PxlTest(64-D,C)=1=>Goto 3
+PlotOn C,D
+L>1=>PlotOff List 1[M],List 2[M]
+L=255=>1->L
+Next
+Lbl 3
+ClrText
+ViewWindow 1,127,0,1,63,0
+F-Line 1,1,1,63
+F-Line 127,63,1,63
+F-Line 127,1,1,1
+F-Line 127,1,127,63
+Text 56,23,"2017 #E6A6 KILIAN LE DU"
+F-Line 127,11,1,11
+Text 38,33,"VERSION [0.422]"
+Text 46,15,"ET PARDON POUR LES BUGS.."
+Text 5,10,"MERCI POUR VOTRE BEAU JEU ·!·"
+F-Line 127,52,1,52
+Text 17,33,"SCORE :"
+Text 26,33,"MEILLEUR :"
+Text 17,64,S
+Text 26,78,Z
+SketchDotF-Line 127,29,1,29Ø
+Goto 0
+Do:Getkey->A
+LpWhile A=0
+A=32=>Goto 0
+80->A
